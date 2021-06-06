@@ -17,7 +17,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = product::Latest()->get();
-        return view('Admin.products.index', ['products'=> $products] );
+        return view('admin.products.index', ['products'=> $products] );
     }
 
     /**
@@ -28,7 +28,7 @@ class ProductsController extends Controller
     public function create()
     { 
         $categories = category::all();
-        return view('Admin.products.create', /*['categories'=> $categories]*/ compact('categories'));
+        return view('admin.products.create', /*['categories'=> $categories]*/ compact('categories'));
     }
 
     /**
@@ -56,7 +56,7 @@ class ProductsController extends Controller
             $product->image = $name;
         }
         if($product->save()){
-            return redirect()->route('products_list');
+            return redirect()->route('admin.products.index');
 
         }
         else{
@@ -84,7 +84,7 @@ class ProductsController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('Admin.products.edit', compact(['product', 'categories']));
+        return view('admin.products.edit', compact(['product','categories']));
     }
 
     /**
@@ -94,16 +94,16 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Product $product)
     {
-        $product = new product;
+       
         $product->product_name = $request->product_name;
         $product->product_desc = $request->product_desc;
         $product->price = $request->price;
         $product->category_id = $request->category_id;
         $product->image = '';
         if($product->save()){
-            return redirect()->route('products_list');
+            return redirect()->route('admin.products.index');
 
         }
         else{
@@ -122,7 +122,7 @@ class ProductsController extends Controller
     {
         $product->delete();
         if($product->delete()){
-            return redirect()->route('products_list');
+            return redirect()->route('admin.products.index');
 
         }
         else{

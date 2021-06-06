@@ -3,8 +3,9 @@
         <div class="container">
           <div class="az-content-body">
             <h2>Update Product: {{$product->product_name}}</h2>
-            <form action="/Admin/products/update" method="POST">
+            <form action="{{ route('admin.products.update',$product->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 Product Name: <input type="text" name="product_name" id="" class="form-control" value="{{ $product->product_name }}"><br><br>
                 Product Desc: <textarea name="product_desc" id="" cols="30" rows="10" class="form-control">{{ $product->product_desc }}</textarea> <br><br>
                 Price: <input type="text" name="price" id="" value="{{ $product->price }}" class="form-control"><br><br>

@@ -2,7 +2,7 @@
 <div class="az-content az-content-dashboard">
     <div class="container">
           <div class="az-content-body">
-    <a href="/Admin/products/create">Create Product</a>
+    <a href= "{{ route('admin.products.create') }}">Create Product</a>
     <table width="900" align="center">
         <tr>
             <td>Id</td>
@@ -18,8 +18,8 @@
             <td>{{substr($product->product_desc, 0,50)}}</td>
             <td>{{$product->price}}</td>
             <td>
-                <a href="/Admin/products/edit/{{$product->id}}">Edit</a>
-                <a href="/Admin/products/destroy/{{$product->id}}">Delete</a>
+                <a href="{{ route('admin.products.edit',$product->id) }}">Edit</a>
+                <a href="{{ route('admin.products.destroy',$product->id) }}">Delete</a>
                 
 
             </td>

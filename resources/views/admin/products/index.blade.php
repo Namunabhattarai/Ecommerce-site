@@ -19,7 +19,13 @@
             <td>{{$product->price}}</td>
             <td>
                 <a href="{{ route('admin.products.edit',$product->id) }}">Edit</a>
-                <a href="{{ route('admin.products.destroy',$product->id) }}">Delete</a>
+                <form action="{{ route('admin.products.destroy',$product->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <a href="#" onclick="event.preventDefault();
+                    this.closest('form').submit();">Delete</a>
+                
+                </form>
                 
 
             </td>

@@ -51,6 +51,7 @@ Route::get('/create_product', function(){
 });
 
 Route::get('/home', [ProductsController::class, 'index']);
+Route::get('search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
 
 Route::get('/categories/{category}', function(Category $category) {
     // $products = Product::whereCategoryId($category->id)->get();
